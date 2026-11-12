@@ -7,18 +7,15 @@ const initialState = {
   count: 0
 };
 
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-
 function counterReducer(state = initialState, action) {
   switch (action.type) {
-    case INCREMENT:
+    case "INCREMENT":
       return {
         ...state,
         count: state.count + 1
       };
 
-    case DECREMENT:
+    case "DECREMENT":
       return {
         ...state,
         count: state.count - 1
@@ -35,26 +32,16 @@ function Counter() {
   const count = useSelector((state) => state.count);
   const dispatch = useDispatch();
 
-  const increment = () => {
-    dispatch({ type: INCREMENT });
-  };
-
-  const decrement = () => {
-    dispatch({ type: DECREMENT });
-  };
-
   return (
     <div>
-      <h1>Counter Application</h1>
+      <h1>{count}</h1>
 
-      <h2>Count: {count}</h2>
-
-      <button onClick={increment}>
-        Increment
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>
+        increment
       </button>
 
-      <button onClick={decrement}>
-        Decrement
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>
+        decrement
       </button>
     </div>
   );
